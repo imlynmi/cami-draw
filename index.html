@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Username Drawer</title>
+  <title>Camila's 100-day Giveaway</title>
   <style>
     body { font-family: Arial; text-align: center; margin: 30px; }
     textarea { width: 300px; height: 100px; }
@@ -11,15 +11,15 @@
 </head>
 <body>
 
-  <h1>Username Drawer</h1>
+  <h1>Camila's 100-day Giveaway</h1>
 
   <textarea id="userListInput" placeholder="Enter usernames, one per line..."></textarea><br>
   <button onclick="startNewList()">Start New List</button><br><br>
 
-  <button onclick="drawUsername()">Draw Username</button>
+  <button onclick="drawUsername()">Draw</button>
 
   <div id="drawn">
-    <h3>Drawn Usernames:</h3>
+    <h3>Drawn Winners:</h3>
     <div id="drawnList"></div>
   </div>
 
@@ -35,8 +35,12 @@
     }
 
     function drawUsername() {
+      if (remainingList.length === 0 && originalList.length === 0) {
+        startNewList(); // Try to load list from textarea
+      }
+
       if (remainingList.length === 0) {
-        alert("No more usernames to draw!");
+        alert("No more participants to draw!");
         return;
       }
 
