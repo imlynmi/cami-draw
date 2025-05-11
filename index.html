@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Username Drawer</title>
+  <style>
+    body { font-family: Arial; text-align: center; margin: 30px; }
+    textarea { width: 300px; height: 100px; }
+    #drawn { margin-top: 20px; }
+    .username { font-size: 1.2em; margin: 5px 0; }
+  </style>
+</head>
+<body>
+
+  <h1>Username Drawer</h1>
+
+  <textarea id="userListInput" placeholder="Enter usernames, one per line..."></textarea><br>
+  <button onclick="startNewList()">Start New List</button><br><br>
+
+  <button onclick="drawUsername()">Draw Username</button>
+
+  <div id="drawn">
+    <h3>Drawn Usernames:</h3>
+    <div id="drawnList"></div>
+  </div>
+
+  <script>
+    let originalList = [];
+    let remainingList = [];
+
+    function startNewList() {
+      const input = document.getElementById("userListInput").value.trim();
+      originalList = input.split('\n').map(u => u.trim()).filter(u => u);
+      remainingList = [...originalList];
+      document.getElementById("drawnList").innerHTML = "";
+    }
+
+    function drawUsername() {
+      if (remainingList.length === 0) {
+        alert("No more usernames to draw!");
+        return;
+      }
+
+      const index = Math.floor(Math.random() * remainingList.length);
+      const drawn = remainingList.splice(index, 1)[0];
+
+      const entry = document.createElement("div");
+      entry.className = "username";
+      entry.textContent = drawn;
+      document.getElementById("drawnList").appendChild(entry);
+    }
+  </script>
+
+</body>
+</html>
